@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 	{
 		std::cout << ">> " << num << std::endl;
 
-		if ((num & mask == 1) || (num & mask == 2))
+		if (((num & mask) == 1) || ((num & mask) == 2))
 		{
 			cnt++;
 		}
