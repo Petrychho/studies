@@ -11,11 +11,10 @@ int main(int argc, char const *argv[])
 
 	while(i < 8)
 	{
-		if (num & mask == 1)
+		if (((num >> i) & mask) == 1)
 		{
 			cnt++;
 		}
-		num = num >> i;
 		i++;
 	}
 
