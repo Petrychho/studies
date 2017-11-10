@@ -16,14 +16,9 @@ int main(int argc, char const *argv[])
 
 	do
 	{
-		int tmp = *start ^ *(start + 1);
-
-		for (int i = 0; i < sizeof(int); ++i)
+		for (int tmp = *start ^ *(start + 1); tmp; tmp >>= 1)
 		{
-			if (((tmp >> i) & 1) == 0)
-			{
-				cnt++;
-			}
+			cnt += ((tmp & 1) == 0);
 		}
 		std::cout << "cnt = " << cnt << std::endl;
 		cnt = 0;
