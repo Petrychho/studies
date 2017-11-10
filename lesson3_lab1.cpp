@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 	do
 	{
 		std::cout << a <<std::endl;
-		*a++;
+		++a;
 	}	
 	while(a <= b);
 	
