@@ -2,7 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-	long int tmp = 0x48656C6C6F;
+	long int tmp = 0x48656C6C6F; // "Hello"
 	char ch;
 // 1.
 // Не понимаю почему компилятор ругается если сделать следующим образом: char *ptr_char = &tmp;
