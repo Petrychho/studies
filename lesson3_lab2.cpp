@@ -2,37 +2,38 @@
 
 int main(int argc, char const *argv[])
 {
-	//long int tmp = 0xFFFFFFFF;
-	long int tmp = 0x4655434B;
+	long int tmp = 0x48656C6C6F;
 	char ch;
-	char* start = &ch + sizeof(long int) - 3;
+// 1.
+// Не понимаю почему компилятор ругается если сделать следующим образом: char *ptr_char = &tmp;
+// т.е. сразу указываем нужный адрес с которого необходимо начать считывать информацию.
+// Если логично подумать то компилятор пытается избежать выхода за пределы выделенной памяти, но если мы 
+// берем самый маленький размер переменной в нашем случае char, то long int, да и любая перемменная,
+// кроме bool, будет кратна 1 байту и за пределы выйти будет просто не возможно если знать размеры.
 
-
+// 2.	
+// Не понятно почему приходится подбирать число для смещения до нужного адреса
+	char* ptr_char = &ch + sizeof(tmp) - 6;
 	int cnt = 0;
 
-	std::cout << "tmp =\t" << &tmp << std::endl;
-	//std::cout << "ch = " << static_cast<void *>(ch) << std::endl;
-	std::cout << "start = " << *start << std::endl;
-	std::cout << "&start = " << static_cast<void *>(start)<< std::endl;
-	std::cout << "start = " << *(start + 1) << std::endl;
-	std::cout << "&start = " << static_cast<void *>(start + 1)<< std::endl;
-	//std::cout << "start =\t" << static_cast<void *>(start) + 5 << std::endl;
-	//std::cout << ">> " << sizeof(tmp) << std::endl;
+	std::cout << "&tmp =\t" << &tmp << std::endl;
+// 3.	
+// Почему адреса char не выводятся на экран, только с помощью static_cast<void *>(ptr_char)?
+	std::cout << "&ptr_char = " << static_cast<void *>(ptr_char)<< std::endl;
 
-/*
-	for (int i = 0; i < sizeof(tmp); ++i)
+// 4.
+// Не понимаю почему если структура (*ptr_char++) работает, то программа циклится если делать 
+// while ((*ptr_char++) != &tmp), т.е. пока не дойдем до нужного адреса ?
+
+	for (int i = 0; i < 5; ++i, (*ptr_char++))
 	{
-		for (int i = 0; i < sizeof(char); ++i)
+		std::cout << "ptr_char = " << *ptr_char << std::endl;
+		for (char res = *ptr_char; res; res >>= 1)
 		{
-			if (((*start >> i) & 1) == 1)
-			{
-				cnt++;
-			}
+			cnt += ((res & 1) == 1);
 		}
-		*start++;
 	}
+	std::cout << "cnt = " << cnt << std::endl;
 
-	std::cout << "cnt = " << cnt << endl;
-*/
 	return 0;
 }
