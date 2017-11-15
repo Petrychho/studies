@@ -20,7 +20,6 @@ int main(int argc, char const *argv[])
 		{
 			cnt += ((tmp & 1) == 0);
 		}
-		
 		std::cout << "cnt = " << cnt << std::endl;
 		cnt = 0;
 		*start++;
