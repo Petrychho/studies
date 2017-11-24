@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 
-TARGET = untitled
+TARGET = lesson6
 CONFIG += console
 CONFIG -= app_bundle
 
