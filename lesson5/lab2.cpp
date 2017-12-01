@@ -23,17 +23,12 @@ void add(list *start, int number)
 void del_all(list* start)
 {
     list *tmp;
-    while(start->Next != NULL)
+    while(start)
     {
-        tmp = start;
-        while(tmp->Next->Next != NULL)
-        {
-            tmp = tmp->Next;
-        }
-        delete tmp->Next;
-        tmp->Next = NULL;
+        tmp = start->Next;
+        delete start;
+        start = tmp;
     }
-    delete start;
 }
 
 

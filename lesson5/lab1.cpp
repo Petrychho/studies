@@ -3,11 +3,8 @@
 
 void remove(char *src, char *substr)
 {
-   int size_src = 0;
-   int size_substr = 0;
-
-   for(int i = 0; src[i] != '\0'; ++i, ++size_src){}
-   for(int i = 0; substr[i] != '\0'; ++i, ++size_substr){}
+   int size_src = strlen(src);
+   int size_substr = strlen(substr);
 
    for(int i = 0; i < size_src; ++i)
    {
