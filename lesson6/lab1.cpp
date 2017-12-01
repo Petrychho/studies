@@ -1,19 +1,22 @@
 #include <iostream>
 
-struct List
+struct Unit
 {
     int Index;
     int Date;
-    List* Next;
-    List* Prev;
+    Unit* Next;
+    Unit* Prev;
+
+    Unit():Index(0),Date(0),Next(NULL),Prev(NULL)
+    {}
 };
 
 class DoubleList
 {
 private:
     int Index;
-    List *Head;
-    List *Tail;
+    Unit *Head;
+    Unit *Tail;
 public:
     DoubleList():Index(0),Head(NULL),Tail(NULL)
     {}
@@ -28,11 +31,9 @@ public:
     }
     void AddToHead(int date)
     {
-        List *tmp = new List;
+        Unit *tmp = new Unit;
         tmp->Date = date;
         tmp->Index = ++Index;
-        tmp->Prev = NULL;
-        tmp->Next = NULL;
 
         if(Head != NULL)
         {
@@ -47,11 +48,9 @@ public:
     }
     void AddToTail(int date)
     {
-        List *tmp = new List;
+        Unit *tmp = new Unit;
         tmp->Date = date;
         tmp->Index = ++Index;
-        tmp->Next = NULL;
-        tmp->Prev = NULL;
 
         if(Tail != NULL)
         {
@@ -64,11 +63,11 @@ public:
             Head = Tail = tmp;
         }
     }
-    List *at(int index)
+    Unit *at(int index)
     {
         if(Index != 0)
         {
-            List *tmp = Head;
+            Unit *tmp = Head;
             while(tmp->Index != index)
             {
                 tmp = tmp->Next;
@@ -77,7 +76,7 @@ public:
         }
         else
         {
-            std::cout << "List are empty.\n";
+            return NULL;
         }
     }
 };
@@ -90,9 +89,10 @@ int main()
     A.AddToTail(444);
     A.AddToHead(111);
 
-    List *tmp = A.at(1);
+    Unit *tmp = A.at(1);
 
-    std::cout << tmp->Date << std::endl;
+    if(tmp)
+        std::cout << tmp->Date << std::endl;
 
     return 0;
 }
